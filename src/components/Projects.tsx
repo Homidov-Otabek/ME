@@ -71,7 +71,15 @@ const otherSystems = [
   },
   { 
     title: "Dex.tj", 
-    desc: "Крипто-платформа для обмена и мониторинга цифровых активов.",
+    url: "https://dex.tj/", 
+    desc: "Обучение немецкому языку.",
+    tags: ["Crypto", "Web3", "Platform"],
+    icon: <Boxes className="w-4 h-4" />
+  },
+  { 
+    title: "Seller TessMarket", 
+    url: "https://seller-tessmarket.ru/", 
+    desc: "Платформа для продажи и покупки товаров.",
     tags: ["Crypto", "Web3", "Platform"],
     icon: <Boxes className="w-4 h-4" />
   },
@@ -94,7 +102,8 @@ const otherSystems = [
     icon: <Database className="w-4 h-4" />
   },
   { 
-    title: "Paykar StockFlow", 
+    title: "StockFlow", 
+    url: "https://play.google.com/store/apps/details?id=tj.apps.stockflow&pcampaignid=web_share_target",
     desc: "Мобильное приложение для складской логистики и сканирования товаров.",
     tags: ["Android", "Kotlin", "Logistics"],
     icon: <Smartphone className="w-4 h-4" />
