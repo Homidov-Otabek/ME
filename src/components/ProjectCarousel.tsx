@@ -39,10 +39,14 @@ export default function ProjectCarousel() {
           <div key={copy} aria-hidden={copy === 1} className="marquee-track flex shrink-0 gap-5 pr-5">
             {projects.map((project) => (
               <button key={`${copy}-${project.id}`} type="button" tabIndex={copy === 1 ? -1 : undefined} onClick={() => setActive(project.id)} className="project-tile group">
-                <span className={`mb-4 size-2.5 rounded-full ${project.accent}`} />
-                <strong className="text-xl font-black tracking-[-.04em]">{project.name}</strong>
+                <span className="flex items-center gap-2">
+                  <span className={`size-2.5 rounded-full ${project.accent}`} />
+                  <strong className="text-xl font-black tracking-[-.04em]">{project.name}</strong>
+                </span>
                 <span className="mt-1 text-[10px] font-bold uppercase tracking-[.14em] text-neutral-400">{project.type}</span>
-                <span className="absolute inset-0 grid place-items-center bg-[#0f172a] text-xs font-bold uppercase tracking-[.15em] text-white opacity-0 transition duration-300 group-hover:opacity-100">Подробнее <ArrowRight className="ml-2 inline" size={14} /></span>
+                <span className="mt-4 inline-flex items-center gap-1.5 rounded-lg bg-[#0f172a] px-3 py-2 text-[9px] font-bold uppercase tracking-[.13em] text-white transition duration-300 group-hover:-translate-y-0.5 group-hover:bg-neutral-700">
+                  Подробнее <ArrowRight size={11} />
+                </span>
               </button>
             ))}
           </div>
