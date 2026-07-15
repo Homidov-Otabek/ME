@@ -1,60 +1,157 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: Arial, Helvetica, sans-serif;
+  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
 }
 
 :root {
-  --background: #030305;
-  --foreground: #f8fafc;
-  --accent-primary: #6366f1;
-  --accent-secondary: #a855f7;
+  --ink: #16251f;
+  --muted: #65736c;
+  --line: #dce4df;
+  --paper: #f7f9f6;
+  --white: #ffffff;
+  --green: #1f6b4d;
+  --green-dark: #174d39;
+  --mint: #dff2e8;
+  --orange: #ef7d45;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: var(--font-sans);
+  min-height: 100vh;
+  margin: 0;
+  color: var(--ink);
+  background: var(--paper);
+  font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  scroll-behavior: smooth;
-  overflow-x: hidden;
 }
 
-@layer utilities {
-  .text-glow {
-    text-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
-  }
-  
-  .glass-card {
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-  }
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+}
 
-  .glass-card-hover {
-    transition: all 0.3s ease;
-  }
-  
-  .glass-card-hover:hover {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 8px 32px 0 rgba(99, 102, 241, 0.1);
-  }
-  
-  .bg-glow {
-    background: radial-gradient(circle at center, var(--accent-primary), transparent 70%);
-    opacity: 0.15;
-    filter: blur(100px);
-  }
+button,
+a {
+  outline-offset: 4px;
+}
 
-  .grid-bg {
-    background-image: 
-      linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-    background-size: 60px 60px;
+::selection {
+  color: var(--green-dark);
+  background: var(--mint);
+}
+
+.shell {
+  width: min(1180px, calc(100% - 40px));
+  margin-inline: auto;
+}
+
+.page-grid {
+  background-image: linear-gradient(rgba(31, 107, 77, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(31, 107, 77, 0.055) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--green);
+  font-family: var(--font-mono), monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.eyebrow::before {
+  width: 22px;
+  height: 2px;
+  content: "";
+  background: var(--orange);
+}
+
+.button-primary,
+.button-secondary {
+  display: inline-flex;
+  min-height: 50px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 22px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 750;
+  transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
+}
+
+.button-primary {
+  color: white;
+  background: var(--green);
+  box-shadow: 0 10px 30px rgba(31, 107, 77, 0.18);
+}
+
+.button-secondary {
+  color: var(--ink);
+  border-color: var(--line);
+  background: white;
+}
+
+.button-primary:hover,
+.button-secondary:hover {
+  transform: translateY(-2px);
+}
+
+.button-primary:hover {
+  background: var(--green-dark);
+}
+
+.button-secondary:hover {
+  border-color: #aebcb4;
+}
+
+.card {
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: white;
+  box-shadow: 0 14px 45px rgba(29, 52, 42, 0.055);
+}
+
+.section-title {
+  max-width: 780px;
+  font-size: clamp(2.2rem, 5.8vw, 4.8rem);
+  font-weight: 760;
+  letter-spacing: -0.055em;
+  line-height: 0.98;
+}
+
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.rise-in {
+  animation: rise-in 650ms cubic-bezier(.2,.7,.2,1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
+}
+
+@media (max-width: 640px) {
+  .shell { width: min(100% - 28px, 1180px); }
 }

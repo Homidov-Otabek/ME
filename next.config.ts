@@ -1,15 +1,15 @@
 import type { NextConfig } from "next";
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
 const nextConfig: NextConfig = {
-  output: 'export',
-  basePath: '/ME',
+  output: "export",
+  ...(basePath ? { basePath } : {}),
+  trailingSlash: true,
   images: {
     unoptimized: true,
   },
-  /* config options here */
-  // @ts-ignore
   serverExternalPackages: [],
-  // В Next.js 16/15 настройка называется serverActions или перенесена
 };
 
 export default nextConfig;
