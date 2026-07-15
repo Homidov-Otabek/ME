@@ -1,20 +1,17 @@
 import Link from "next/link";
-import { ArrowUpRight, MapPin } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-[#dce4df] bg-white py-10">
-      <div className="shell flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
-        <div>
-          <Link href="/" className="text-lg font-extrabold tracking-[-0.03em]">Otabek Homidov</Link>
-          <p className="mt-2 flex items-center gap-2 text-sm text-[#65736c]"><MapPin size={15} /> Душанбе, Таджикистан</p>
+    <footer id="contact" className="border-t border-neutral-200/60 bg-white px-4 pb-10 pt-16 sm:px-6">
+      <div className="mx-auto max-w-6xl">
+        <div className="grid gap-10 border-b border-neutral-200/60 pb-14 sm:grid-cols-2 lg:grid-cols-4">
+          <div><Link href="/" className="text-lg font-black tracking-[-.04em]">Otabek Homidov</Link><p className="mt-4 max-w-[240px] text-xs font-light leading-relaxed text-neutral-400">Создание премиальных цифровых интерфейсов, мобильных продуктов и AI-решений.</p></div>
+          <div><h3 className="micro-label mb-4">Разделы</h3><div className="grid gap-3 text-sm text-neutral-500"><Link href="/about" className="hover:text-[#0f172a]">Обо мне</Link><Link href="/#skills" className="hover:text-[#0f172a]">Навыки</Link><Link href="/#projects" className="hover:text-[#0f172a]">Проекты</Link></div></div>
+          <div><h3 className="micro-label mb-4">Связь</h3><div className="grid gap-3 text-sm text-neutral-500"><Link href="/contact" className="inline-flex items-center gap-1 hover:text-[#0f172a]">Написать мне <ArrowUpRight size={13} /></Link><Link href="/contact" className="hover:text-[#0f172a]">Контакты</Link></div></div>
+          <div><h3 className="micro-label mb-4">Локация</h3><p className="text-sm text-neutral-500">Душанбе, Таджикистан</p><div className="mt-4 inline-flex items-center gap-2 rounded-full border border-emerald-100 bg-emerald-50 px-3 py-2"><span className="size-2 rounded-full bg-emerald-500" /><span className="text-[10px] font-bold uppercase tracking-[.1em] text-emerald-700">Доступен для работы</span></div></div>
         </div>
-        <div className="flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold">
-          <Link href="/projects" className="hover:text-[#1f6b4d]">Проекты</Link>
-          <Link href="/experience" className="hover:text-[#1f6b4d]">Опыт</Link>
-          <Link href="/contact" className="inline-flex items-center gap-1 hover:text-[#1f6b4d]">Контакты <ArrowUpRight size={14} /></Link>
-        </div>
-        <p className="text-xs text-[#87928c]">© {new Date().getFullYear()} Все права защищены.</p>
+        <div className="flex flex-col gap-3 pt-8 text-xs text-neutral-400 sm:flex-row sm:items-center sm:justify-between"><p>© {new Date().getFullYear()} Homidov Otabek. Все права защищены.</p><p className="italic">Designed with precision.</p></div>
       </div>
     </footer>
   );

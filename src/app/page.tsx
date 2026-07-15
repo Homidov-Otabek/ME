@@ -1,87 +1,177 @@
 import Link from "next/link";
-import { ArrowRight, BrainCircuit, Code2, MapPin, Smartphone, Sparkles } from "lucide-react";
-import { projects } from "@/lib/data";
+import {
+  ArrowRight,
+  Bot,
+  Clock3,
+  Code2,
+  Database,
+  FolderKanban,
+  Layers3,
+  MapPin,
+  Smartphone,
+  Zap,
+} from "lucide-react";
+import ProjectCarousel from "@/components/ProjectCarousel";
+
+const directions = [
+  {
+    number: "01 / Mobile",
+    title: "Mobile Development",
+    text: "Создаю нативные и кроссплатформенные приложения с плавным интерфейсом, отзывчивыми жестами и надёжной архитектурой.",
+    stack: ["Kotlin", "Flutter", "Jetpack Compose", "App Security"],
+    icon: Smartphone,
+    className: "lg:col-span-7",
+    glow: "bg-emerald-100/70",
+  },
+  {
+    number: "02 / Web",
+    title: "Frontend Engineering",
+    text: "Проектирую чистые, быстрые и адаптивные веб-интерфейсы с высокой степенью кастомизации и аккуратной анимацией.",
+    stack: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
+    icon: Code2,
+    className: "lg:col-span-5",
+    glow: "bg-blue-100/70",
+  },
+  {
+    number: "03 / Intelligence",
+    title: "AI & Automation",
+    text: "Интегрирую LLM, умный поиск по собственным данным и системы компьютерного зрения в реальные бизнес-процессы.",
+    stack: ["LLM APIs", "RAG", "Computer Vision", "Dahua SDK"],
+    icon: Bot,
+    className: "lg:col-span-5",
+    glow: "bg-violet-100/70",
+  },
+  {
+    number: "04 / Backend",
+    title: "Backend & Server",
+    text: "Строю надёжные базы данных, безопасные API и серверные сценарии, которые выдерживают рост продукта и нагрузки.",
+    stack: ["Node.js", "Python", "PostgreSQL", "REST API"],
+    icon: Database,
+    className: "lg:col-span-7",
+    glow: "bg-fuchsia-100/60",
+  },
+];
+
+const experience = [
+  {
+    period: "2023 — сейчас",
+    company: "Ieram · Logistics",
+    role: "Full-stack Developer & AI Engineer",
+    text: "Автоматизация логистики, интеграция AI-моделей и разработка систем мониторинга с использованием компьютерного зрения.",
+  },
+  {
+    period: "2021 — 2023",
+    company: "Product teams · Freelance",
+    role: "Web & Mobile Developer",
+    text: "Веб-продукты, backend-системы и Android-приложения для ритейла, сервисов и e-commerce.",
+  },
+];
 
 export default function Home() {
   return (
     <>
-      <section className="page-grid border-b border-[#dce4df] bg-white py-16 sm:py-24 lg:py-32">
-        <div className="shell grid items-center gap-14 lg:grid-cols-[1.15fr_.85fr]">
-          <div className="rise-in">
-            <span className="eyebrow">Full-stack & AI developer</span>
-            <h1 className="mt-7 max-w-4xl text-[clamp(3.4rem,8vw,7.7rem)] font-[780] leading-[.86] tracking-[-.075em]">
-              Создаю продукты, <span className="text-[#1f6b4d]">которые работают.</span>
-            </h1>
-            <p className="mt-8 max-w-2xl text-lg leading-8 text-[#65736c] sm:text-xl">От интерфейса до backend, мобильного приложения и AI-интеграции. Один разработчик — цельная система.</p>
-            <div className="mt-9 flex flex-wrap gap-3">
-              <Link href="/projects" className="button-primary">Смотреть проекты <ArrowRight size={18} /></Link>
-              <Link href="/about" className="button-secondary">Обо мне</Link>
+      <section id="home" className="px-4 pb-16 pt-32 sm:px-6 lg:min-h-screen lg:pt-40">
+        <div className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-6 lg:grid-cols-12">
+          <article className="bento-card group relative flex min-h-[450px] flex-col justify-between overflow-hidden p-8 sm:p-12 lg:col-span-8">
+            <div className="pointer-events-none absolute -right-14 -top-14 size-60 rounded-full bg-slate-100/70 blur-3xl transition duration-700 group-hover:scale-125" />
+            <div className="relative">
+              <div className="mb-8 inline-flex items-center gap-2 rounded-full bg-[#f4f5f7] px-3.5 py-2 text-[11px] font-bold uppercase tracking-[.12em] text-neutral-500">
+                <MapPin size={14} /> Душанбе, Таджикистан
+              </div>
+              <p className="mb-4 text-xs font-bold uppercase tracking-[.22em] text-neutral-400">Инженер-разработчик</p>
+              <h1 className="max-w-2xl text-5xl font-black leading-[.94] tracking-[-.065em] text-[#0f172a] sm:text-7xl">
+                Homidov<br />Otabek<span className="text-neutral-300">.</span>
+              </h1>
+              <p className="mt-7 max-w-xl text-lg font-light leading-relaxed text-neutral-400 sm:text-xl">
+                Создаю продуманные мобильные и веб-продукты с сильной инженерией и исключительным вниманием к дизайну.
+              </p>
             </div>
-          </div>
+            <div className="relative mt-12 flex flex-wrap gap-3">
+              <a href="#projects" className="premium-button">Мои проекты <ArrowRight size={16} /></a>
+              <Link href="/about" className="soft-button">Кто я?</Link>
+            </div>
+          </article>
 
-          <div className="relative mx-auto w-full max-w-[470px] lg:mx-0 lg:justify-self-end">
-            <div className="card relative overflow-hidden p-7 sm:p-9">
-              <div className="absolute -right-12 -top-12 size-44 rounded-full bg-[#dff2e8]" />
-              <div className="relative flex items-start justify-between">
-                <div className="grid size-20 place-items-center rounded-3xl bg-[#1f6b4d] text-2xl font-black text-white">OH</div>
-                <Sparkles className="text-[#ef7d45]" />
-              </div>
-              <p className="relative mt-10 text-2xl font-bold tracking-[-0.04em]">Otabek Homidov</p>
-              <p className="mt-2 flex items-center gap-2 text-sm text-[#65736c]"><MapPin size={16} /> Душанбе, Таджикистан</p>
-              <div className="mt-8 grid grid-cols-3 gap-3 border-t border-[#dce4df] pt-7 text-center">
-                <div><b className="block text-2xl text-[#1f6b4d]">11+</b><span className="text-xs text-[#65736c]">проектов</span></div>
-                <div><b className="block text-2xl text-[#1f6b4d]">4+</b><span className="text-xs text-[#65736c]">лет в IT</span></div>
-                <div><b className="block text-2xl text-[#1f6b4d]">3</b><span className="text-xs text-[#65736c]">направления</span></div>
-              </div>
+          <article className="bento-card flex min-h-[360px] flex-col justify-between p-8 lg:col-span-4">
+            <div className="flex items-start justify-between">
+              <span className="grid size-11 place-items-center rounded-xl border border-neutral-100 bg-neutral-50 text-neutral-600"><Zap size={20} /></span>
+              <span className="micro-label">Personal info</span>
             </div>
-          </div>
+            <div>
+              <span className="micro-label">Специализация</span>
+              <h2 className="mt-3 text-3xl font-black tracking-[-.04em]">Full-stack & AI</h2>
+              <p className="mt-4 font-medium leading-relaxed text-neutral-500">Android, Frontend, Backend и интеллектуальная автоматизация.</p>
+            </div>
+            <div className="flex items-center gap-2 border-t border-neutral-100 pt-5">
+              <span className="relative flex size-2"><span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-75" /><span className="relative inline-flex size-2 rounded-full bg-emerald-500" /></span>
+              <span className="text-[11px] font-bold uppercase tracking-[.12em] text-neutral-500">Открыт к предложениям</span>
+            </div>
+          </article>
+
+          {[
+            { label: "Практика", value: "4+", caption: "года коммерческого опыта", icon: Clock3 },
+            { label: "Портфолио", value: "15+", caption: "выполненных проектов", icon: FolderKanban },
+            { label: "Экспертиза", value: "4", caption: "ключевых направления", icon: Layers3 },
+          ].map(({ label, value, caption, icon: Icon }) => (
+            <article key={label} className="bento-card flex min-h-[235px] flex-col justify-between p-8 lg:col-span-4">
+              <div className="flex items-start justify-between"><span className="micro-label">{label}</span><Icon size={20} className="text-neutral-300" /></div>
+              <strong className="my-6 text-6xl font-black tracking-[-.06em]">{value}</strong>
+              <span className="micro-label text-neutral-500">{caption}</span>
+            </article>
+          ))}
         </div>
       </section>
 
-      <section className="py-20 sm:py-28">
-        <div className="shell">
-          <span className="eyebrow">Что я делаю</span>
-          <div className="mt-8 grid gap-5 md:grid-cols-3">
-            {[
-              { icon: Code2, number: "01", title: "Web-продукты", text: "Быстрые интерфейсы, личные кабинеты и сложные бизнес-системы." },
-              { icon: Smartphone, number: "02", title: "Mobile", text: "Нативные Android-приложения, связанные с единой backend-системой." },
-              { icon: BrainCircuit, number: "03", title: "AI и автоматизация", text: "LLM, компьютерное зрение и автоматизация реальных процессов." },
-            ].map(({ icon: Icon, number, title, text }) => (
-              <article key={title} className="card p-7 sm:p-8">
-                <div className="flex items-center justify-between"><span className="grid size-12 place-items-center rounded-2xl bg-[#dff2e8] text-[#1f6b4d]"><Icon size={22} /></span><span className="font-mono text-xs text-[#87928c]">{number}</span></div>
-                <h2 className="mt-10 text-2xl font-bold tracking-[-0.04em]">{title}</h2>
-                <p className="mt-4 leading-7 text-[#65736c]">{text}</p>
+      <section id="skills" className="scroll-mt-28 px-4 py-24 sm:px-6 sm:py-32">
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-16 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+            <div><span className="section-kicker">Специализация</span><h2 className="section-heading mt-4">Направления<br className="hidden sm:block" /> и навыки</h2></div>
+            <p className="max-w-sm font-light leading-relaxed text-neutral-400">Четыре дисциплины, объединённые в одну экосистему разработки — от интерфейса до инфраструктуры.</p>
+          </div>
+          <div className="focus-grid grid grid-cols-1 gap-6 lg:grid-cols-12">
+            {directions.map(({ icon: Icon, ...item }) => (
+              <article key={item.title} className={`skill-card group relative flex min-h-[410px] flex-col justify-between overflow-hidden p-8 sm:p-11 ${item.className}`}>
+                <span className={`pointer-events-none absolute -right-20 -top-20 size-72 rounded-full blur-[70px] transition duration-700 group-hover:scale-125 ${item.glow}`} />
+                <div className="relative">
+                  <div className="mb-10 flex items-start justify-between"><span className="grid size-12 place-items-center rounded-2xl border border-neutral-100 bg-neutral-50 text-neutral-600"><Icon size={21} /></span><span className="micro-label">{item.number}</span></div>
+                  <h3 className="text-3xl font-black tracking-[-.045em]">{item.title}</h3>
+                  <p className="mt-4 max-w-lg font-light leading-relaxed text-neutral-400">{item.text}</p>
+                </div>
+                <div className="relative mt-10 translate-y-1 opacity-60 transition duration-500 group-hover:translate-y-0 group-hover:opacity-100">
+                  <span className="micro-label mb-4 block">Инструменты и стек</span>
+                  <div className="flex flex-wrap gap-2">{item.stack.map((tech) => <span key={tech} className="tech-pill">{tech}</span>)}</div>
+                </div>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="border-y border-[#dce4df] bg-white py-20 sm:py-28">
-        <div className="shell">
-          <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-            <div><span className="eyebrow">Избранные работы</span><h2 className="mt-5 text-4xl font-bold tracking-[-0.055em] sm:text-6xl">Проекты в работе</h2></div>
-            <Link href="/projects" className="button-secondary self-start">Все проекты <ArrowRight size={17} /></Link>
-          </div>
-          <div className="mt-10 divide-y divide-[#dce4df] border-y border-[#dce4df]">
-            {projects.slice(0, 4).map((project, index) => (
-              <div key={project.title} className="grid gap-4 py-6 sm:grid-cols-[55px_1fr_auto] sm:items-center">
-                <span className="font-mono text-xs text-[#87928c]">0{index + 1}</span>
-                <div><h3 className="text-xl font-bold">{project.title}</h3><p className="mt-1 text-sm text-[#65736c]">{project.description}</p></div>
-                {project.url ? <a href={project.url} target="_blank" rel="noreferrer" className="font-semibold text-[#1f6b4d] hover:underline">Открыть ↗</a> : <span className="text-sm text-[#87928c]">Закрытый проект</span>}
-              </div>
+      <ProjectCarousel />
+
+      <section id="experience" className="scroll-mt-28 border-t border-neutral-200/60 bg-white px-4 py-24 sm:px-6">
+        <div className="mx-auto max-w-6xl">
+          <span className="section-kicker">Бэкграунд</span>
+          <h2 className="mt-4 text-4xl font-black tracking-[-.05em] sm:text-5xl">Профессиональный опыт</h2>
+          <div className="relative mt-14 ml-3 space-y-5 border-l border-neutral-200 pl-8 sm:ml-5 sm:pl-10">
+            {experience.map((item) => (
+              <article key={item.period} className="experience-card group relative">
+                <span className="absolute -left-[43px] top-8 size-5 rounded-full border-4 border-neutral-200 bg-white transition group-hover:border-[#0f172a] sm:-left-[51px]" />
+                <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+                  <div><span className="micro-label">{item.company}</span><h3 className="mt-2 text-xl font-bold tracking-[-.03em]">{item.role}</h3></div>
+                  <span className="shrink-0 text-xs font-semibold text-neutral-400">{item.period}</span>
+                </div>
+                <p className="mt-4 max-w-3xl text-sm font-light leading-relaxed text-neutral-500">{item.text}</p>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-20 sm:py-28">
-        <div className="shell rounded-[32px] bg-[#1f6b4d] px-7 py-12 text-white sm:px-12 sm:py-16">
-          <p className="font-mono text-xs font-bold uppercase tracking-[.14em] text-[#bfe6d2]">Есть задача?</p>
-          <div className="mt-5 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
-            <h2 className="max-w-3xl text-4xl font-bold leading-[1.02] tracking-[-.055em] sm:text-6xl">Давайте обсудим продукт и найдём рабочее решение.</h2>
-            <Link href="/contact" className="button-secondary shrink-0 self-start">Связаться <ArrowRight size={17} /></Link>
-          </div>
+      <section className="bg-white px-4 pb-24 sm:px-6">
+        <div className="mx-auto flex max-w-6xl flex-col gap-8 rounded-[32px] bg-[#0f172a] p-8 text-white sm:p-12 lg:flex-row lg:items-end lg:justify-between">
+          <div><span className="section-kicker text-white/45">Есть идея проекта?</span><h2 className="mt-4 max-w-2xl text-4xl font-black leading-tight tracking-[-.05em] sm:text-5xl">Давайте создадим что-то выдающееся вместе.</h2></div>
+          <Link href="/contact" className="inline-flex min-h-13 shrink-0 items-center justify-center gap-2 self-start rounded-full bg-white px-7 text-sm font-bold text-[#0f172a] transition hover:-translate-y-1">Начать проект <ArrowRight size={17} /></Link>
         </div>
       </section>
     </>

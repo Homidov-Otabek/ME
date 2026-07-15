@@ -4,8 +4,8 @@ import Footer from "@/components/Footer";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: { default: "Otabek Homidov — Full-stack разработчик", template: "%s — Otabek Homidov" },
-  description: "Портфолио full-stack и AI-разработчика из Душанбе: веб, мобильные приложения и автоматизация бизнеса.",
+  title: { default: "Homidov Otabek — Инженер-разработчик", template: "%s — Homidov Otabek" },
+  description: "Портфолио инженера-разработчика из Душанбе: мобильные приложения, веб-продукты, backend и AI-автоматизация.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
