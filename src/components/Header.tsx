@@ -1,42 +1,59 @@
 "use client";
-import { useEffect, useState } from "react";
-import { Terminal, Layers, Layout, Monitor } from "lucide-react";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Menu, X } from "lucide-react";
+import { useState } from "react";
+
+const navigation = [
+  { href: "/", label: "Главная" },
+  { href: "/about", label: "Обо мне" },
+  { href: "/projects", label: "Проекты" },
+  { href: "/skills", label: "Навыки" },
+  { href: "/experience", label: "Опыт" },
+];
 
 export default function Header() {
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const pathname = usePathname();
+  const [open, setOpen] = useState(false);
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${isScrolled ? "bg-[#030305]/80 backdrop-blur-xl py-5" : "bg-transparent py-10"}`}>
-      <div className={`absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent transition-opacity duration-500 ${isScrolled ? "opacity-100" : "opacity-0"}`} />
-      
-      <nav className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-        <div className="flex items-center gap-4 group cursor-pointer">
-          <div className="w-10 h-10 glass-card rounded-xl flex items-center justify-center text-indigo-400 font-bold group-hover:rotate-12 transition-transform group-hover:border-indigo-500/50">H</div>
-          <span className="text-base font-bold tracking-[0.2em] text-white group-hover:text-indigo-400 transition-colors uppercase">Otabek.Dev</span>
-        </div>
+    <header className="sticky top-0 z-50 border-b border-[#dce4df] bg-[#f7f9f6]/92 backdrop-blur-xl">
+      <div className="shell flex h-[76px] items-center justify-between">
+        <Link href="/" className="flex items-center gap-3" aria-label="На главную">
+          <span className="grid size-10 place-items-center rounded-full bg-[#1f6b4d] text-sm font-black text-white">OH</span>
+          <span className="leading-tight">
+            <b className="block text-sm tracking-[-0.02em]">Otabek Homidov</b>
+            <span className="text-[11px] text-[#65736c]">Full-stack / AI developer</span>
+          </span>
+        </Link>
 
-        <div className="hidden md:flex items-center gap-12">
-          {[
-            { label: "Arsenal", href: "#skills", icon: <Layers className="w-3.5 h-3.5" /> },
-            { label: "Projects", href: "#projects-section", icon: <Monitor className="w-3.5 h-3.5" /> },
-            { label: "Experience", href: "#experience", icon: <Layout className="w-3.5 h-3.5" /> },
-          ].map((item) => (
-            <a key={item.label} href={item.href} className="flex items-center gap-2.5 text-[10px] font-bold tracking-[0.4em] uppercase text-slate-400 hover:text-indigo-400 transition-all">
-              {item.icon} {item.label}
-            </a>
-          ))}
-        </div>
+        <nav className="hidden items-center gap-1 lg:flex" aria-label="Основная навигация">
+          {navigation.map((item) => {
+            const active = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
+            return (
+              <Link key={item.href} href={item.href} className={`rounded-full px-4 py-2 text-sm font-semibold transition ${active ? "bg-white text-[#1f6b4d] shadow-sm" : "text-[#65736c] hover:text-[#16251f]"}`}>
+                {item.label}
+              </Link>
+            );
+          })}
+        </nav>
 
-        <a href="#contact" className="hidden sm:flex items-center gap-3 px-6 py-2.5 glass-card text-indigo-400 text-[10px] font-bold tracking-[0.3em] uppercase hover:bg-indigo-500/10 hover:border-indigo-500/50 transition-all">
-          Connect <Terminal className="w-3.5 h-3.5" />
-        </a>
-      </nav>
+        <Link href="/contact" className="button-primary hidden min-h-11 px-5 sm:inline-flex">Связаться</Link>
+        <button type="button" onClick={() => setOpen((value) => !value)} className="grid size-11 place-items-center rounded-full border border-[#dce4df] bg-white lg:hidden" aria-expanded={open} aria-label={open ? "Закрыть меню" : "Открыть меню"}>
+          {open ? <X size={20} /> : <Menu size={20} />}
+        </button>
+      </div>
+
+      {open && (
+        <nav className="border-t border-[#dce4df] bg-white px-5 py-4 lg:hidden" aria-label="Мобильная навигация">
+          <div className="shell grid gap-1">
+            {[...navigation, { href: "/contact", label: "Связаться" }].map((item) => (
+              <Link key={item.href} href={item.href} onClick={() => setOpen(false)} className="rounded-xl px-4 py-3 text-base font-semibold hover:bg-[#f0f5f1]">{item.label}</Link>
+            ))}
+          </div>
+        </nav>
+      )}
     </header>
   );
 }
